@@ -54,6 +54,7 @@ export default function Homepage() {
     set(ref(db, `/${auth.currentUser.uid}/${uidd}`), {
       todo: todo,
       uidd: uidd,
+      date:new Date
     
     });
 
