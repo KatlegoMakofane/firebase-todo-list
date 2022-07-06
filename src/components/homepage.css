@@ -1,7 +1,7 @@
 .homepage {
   height: 100vh;
   weight: 100vw;
-  background: linear-gradient(122.19deg, #9c5a7a 1.89%, #b5d500 113.56%);
+  background-color: yellow;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,7 +11,7 @@
 
 .add-edit-input {
   position: absolute;
-  top: 20px;
+  top: 100px;
   outline: none;
   border: none;
   height: 30px;
@@ -22,8 +22,8 @@
 .add-confirm-icon {
   position: absolute;
   transform: scale(2);
-  top: 27px;
-  right: 750px;
+  top: 107px;
+  right: 630px;
   cursor: pointer;
 }
 

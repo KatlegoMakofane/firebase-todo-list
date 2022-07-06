@@ -10,13 +10,15 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import LogoutIcon from '@mui/icons-material/Logout';
 import CheckIcon from '@mui/icons-material/Check';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
 export default function Homepage() {
   const [todo, setTodo] = useState("");
   const [todos, setTodos] = useState([]);
   const [isEdit, setIsEdit] = useState(false);
   const [tempUidd, setTempUidd] = useState("");
-  date :new Date;
+  const[date,setDate]=useState( Date(new Date));
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -54,7 +56,8 @@ export default function Homepage() {
     set(ref(db, `/${auth.currentUser.uid}/${uidd}`), {
       todo: todo,
       uidd: uidd,
-      date:new Date
+      date:date
+ 
     
     });
 
@@ -66,23 +69,35 @@ export default function Homepage() {
     setIsEdit(true);
     setTodo(todo.todo);
     setTempUidd(todo.uidd);
+    setDate(todo.date)
   };
 
   const handleEditConfirm = () => {
     update(ref(db, `/${auth.currentUser.uid}/${tempUidd}`), {
       todo: todo,
-      tempUidd: tempUidd
+      tempUidd: tempUidd,
+      date:date
     });
 
     setTodo("");
-    setIsEdit(false);
+    setIsEdit(true);
+    setDate(todo.date)
   };
 
   // delete
   const handleDelete = (uid) => {
     remove(ref(db, `/${auth.currentUser.uid}/${uid}`));
   };
+ 
+  const handleDone= (uid) => {
+    setTodo(todo.map(
+      task => task.uid === uid 
+      ? ({ ...task, status: !task.status }) 
+      : (task) 
+    ))
 
+
+  }
   return (
     <div className="homepage">
       <input
@@ -95,7 +110,9 @@ export default function Homepage() {
 
       {todos.map((todo) => (
         <div className="todo">
-          <h1>{todo.todo}</h1>
+          <h1>{todo.todo} <br></br>{todo.date}
+          </h1>
+          
           <EditIcon
             fontSize="large"
             onClick={() => handleUpdate(todo)}
@@ -105,6 +122,11 @@ export default function Homepage() {
             fontSize="large"
             onClick={() => handleDelete(todo.uidd)}
             className="delete-button"
+          />
+            <CheckBoxIcon
+            fontSize="large"
+            onClick={() => handleDone(todo.uidd)}
+            className="mark-button"
           />
         </div>
       ))}
