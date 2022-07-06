@@ -16,6 +16,7 @@ export default function Homepage() {
   const [todos, setTodos] = useState([]);
   const [isEdit, setIsEdit] = useState(false);
   const [tempUidd, setTempUidd] = useState("");
+  date :new Date;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -52,7 +53,8 @@ export default function Homepage() {
     const uidd = uid();
     set(ref(db, `/${auth.currentUser.uid}/${uidd}`), {
       todo: todo,
-      uidd: uidd
+      uidd: uidd,
+    
     });
 
     setTodo("");
