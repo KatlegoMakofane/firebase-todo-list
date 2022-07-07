@@ -17,13 +17,15 @@
   height: 30px;
   font-size: 25px;
   padding: 5px 20px;
+  border: 10px blue solid;
+  border-radius: 40px;
 }
 
 .add-confirm-icon {
   position: absolute;
   transform: scale(2);
-  top: 107px;
-  right: 630px;
+  top: 117px;
+  right: 620px;
   cursor: pointer;
 }
 
@@ -33,12 +35,16 @@
   justify-content: center;
   flex-direction: row;
   margin-bottom: 10px;
+
+  
 }
 
 .todo > h1 {
   width: 500px;
   background-color: rgb(211, 211, 211);
   padding: 5px 10px;
+  border-radius: 40px;
+  border: 10px blue solid;
 }
 
 .edit-button,
